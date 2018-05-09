@@ -4,10 +4,9 @@
   "description": "seed for a web app",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
-    "build:prod": "./node_modules/.bin/webpack -p",
+    "build": "./node_modules/.bin/webpack -p",
     "watch": "./node_modules/.bin/webpack --watch",
-    "dev": "./node_modules/.bin/webpack-dev-server --mode='development'"
+    "dev": "./node_modules/.bin/webpack-dev-server -d"
   },
   "author": "",
   "license": "ISC",

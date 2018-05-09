@@ -13,7 +13,7 @@ const config = {
     filename: './assets/app.bundle.js'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist/assets']),
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
