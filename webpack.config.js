@@ -2,6 +2,9 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 const config = {
   context: path.resolve(__dirname, 'src'),
@@ -16,6 +19,9 @@ const config = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: 'index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'assets/css/app.css'
     })
   ],
   devServer: {
@@ -45,7 +51,10 @@ const config = {
       },
       {
         test:/\.css$/,
-        use:['style-loader','css-loader']
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader'
+        ],
       },
       {
         test: /\.(jpg|png|gif|svg)$/,
@@ -53,7 +62,6 @@ const config = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
               outputPath: './assets/media/',
               publicPath: './assets/media/'
             }

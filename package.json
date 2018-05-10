@@ -4,7 +4,7 @@
   "description": "seed for a web app",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack -p",
+    "build": "NODE_ENV='production' ./node_modules/.bin/webpack -p",
     "watch": "./node_modules/.bin/webpack --watch",
     "dev": "./node_modules/.bin/webpack-dev-server -d"
   },
@@ -19,6 +19,7 @@
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
