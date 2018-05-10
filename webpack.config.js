@@ -18,7 +18,8 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: 'index.html',
+      favicon: 'assets/media/favicon.ico'
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/css/app.css'
@@ -57,7 +58,7 @@ const config = {
         ],
       },
       {
-        test: /\.(jpg|png|gif|svg)$/,
+        test: /\.(jpg|png|gif|svg|ico)$/,
         use: [
           {
             loader: 'file-loader',
