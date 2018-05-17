@@ -28,7 +28,7 @@ const config = {
   devServer: {
     contentBase: path.resolve(__dirname, "./dist"),
     compress: true,
-    port: 12000,
+    port: 12003,
     stats: 'errors-only',
     open: true
   },
@@ -63,6 +63,7 @@ const config = {
           {
             loader: 'file-loader',
             options: {
+              name: '[name].[ext]',
               outputPath: './assets/media/',
               publicPath: './assets/media/'
             }
