@@ -4,9 +4,10 @@
   "description": "seed for a web app",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV='production' ./node_modules/.bin/webpack -p",
-    "watch": "./node_modules/.bin/webpack --watch",
-    "dev": "./node_modules/.bin/webpack-dev-server -d"
+    "buildProd": "./node_modules/.bin/webpack --env.production",
+    "buildDev": "./node_modules/.bin/webpack --env.development",
+    "watch": "./node_modules/.bin/webpack --watch --env.development",
+    "dev": "./node_modules/.bin/webpack-dev-server --env.development"
   },
   "author": "",
   "license": "ISC",
