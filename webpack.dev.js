@@ -1,9 +1,8 @@
 const path = require('path');
 const merge = require("webpack-merge");
-const common = require("./webpack.common");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const buildResources = require("./buildResources");
 
-module.exports = merge(common, {
+module.exports = merge(buildResources.commonConfig, {
   mode: "development",
   devtool: "inline-source-map",
   devServer: {
@@ -14,21 +13,7 @@ module.exports = merge(common, {
     open: true
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      favicon: 'assets/media/favicon.ico',
-    }),
+    buildResources.createHtmlWebpackPlugin(),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ],
-      }
-    ]
-  }
+  module: buildResources.createSCSSModule("style-loader")
 });

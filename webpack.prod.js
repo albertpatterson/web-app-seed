@@ -1,21 +1,18 @@
 const merge = require("webpack-merge");
-const common = require("./webpack.common");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const buildResources = require("./buildResources");
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-module.exports = merge(common, {
+module.exports = merge(buildResources.commonConfig, {
   mode: "production",
   plugins: [
     new MinifyPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'assets/css/app.css'
+      filename: 'assets/css/app_[hash].css'
     }),
     new OptimizeCSSAssetsPlugin({}),
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      favicon: 'assets/media/favicon.ico',
+    buildResources.createHtmlWebpackPlugin({
       minify: {
         collapseWhitespace: true,
         preserveLineBreaks: true,
@@ -23,16 +20,5 @@ module.exports = merge(common, {
       }
     }),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
-        ],
-      }
-    ]
-  }
+  module: buildResources.createSCSSModule(MiniCssExtractPlugin.loader)
 });
