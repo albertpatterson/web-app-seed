@@ -1,4 +1,4 @@
-# web-app-seed
+# webpack-web-app-seed
 a seed for a web app project using webpack 
 
 ## License
